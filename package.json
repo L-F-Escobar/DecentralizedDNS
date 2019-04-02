@@ -1,0 +1,24 @@
+{
+  "name": "DecentralizedDNS",
+  "version": "1.0.0",
+  "description": "Smart contract which employs OpenZeppelin audited contracts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LEscobar-Driver/DecentralizedDNS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LEscobar-Driver/DecentralizedDNS/issues"
+  },
+  "homepage": "https://github.com/LEscobar-Driver/DecentralizedDNS#readme",
+  "dependencies": {
+    "mocha": "^6.0.2",
+    "solc": "^0.5.7"
+  }
+}
