@@ -274,7 +274,61 @@ contract DDNSService is Destructible {
             domain, 
             topLevel
         );
-}
+    }
+
+
+
+     /*
+     * @dev - function to extend domain expiration date
+     * @param domain - domain name to be registered
+     * @param topLevel - top level
+     */
+    function renewDomainName(bytes memory domain,bytes12 topLevel) 
+        public 
+        payable 
+        isDomainOwner(domain, topLevel)
+        collectDomainNamePayment(domain)
+    {
+        // calculate the domain hash
+        bytes32 domainHash = getDomainHash(domain, topLevel);
+        
+        // add 365 days (1 year) to the domain expiration date
+        domainNames[domainHash].expires += 365 days;
+        
+        // create a receipt entity
+        Receipt memory newReceipt = Receipt(
+            {
+                amountPaidWei: DOMAIN_NAME_COST,
+                timestamp: block.timestamp,
+                expires: block.timestamp + DOMAIN_EXPIRATION_DATE
+            }
+        );
+
+        // calculate the receipt key for this domain
+        bytes32 receiptKey = getReceiptKey(domain, topLevel);
+        
+        // save the receipt id for this msg.sender
+        paymentReceipts[msg.sender].push(receiptKey);
+
+        // store the receipt details in storage
+        receiptDetails[receiptKey] = newReceipt;
+
+        // log domain name Renewed
+        emit LogDomainNameRenewed(
+            block.timestamp,
+            domain,
+            topLevel,
+            msg.sender
+        );
+
+        // log receipt issuance
+        emit LogReceipt(
+            block.timestamp, 
+            domain, 
+            DOMAIN_NAME_COST, 
+            block.timestamp + DOMAIN_EXPIRATION_DATE
+        );
+    }
 
 
 }

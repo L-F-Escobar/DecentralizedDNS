@@ -83,4 +83,15 @@ cat = Prince("Prince", 4, "Meow")
 # cat.get_data_keys()
 # cat.reverse_word("World")
 # cat.break_down_word("WorldW")
-cat.compare_words("puppies", "doggies")
+# cat.compare_words("puppies", "doggies")
+
+testing = 666
+print(testing)
+testing = "leather"
+print(testing)
+
+testlist = {}
+testlist["LUIS"] = 666
+print(testlist)
+testlist.pop("LUIS")
+print(testlist)
